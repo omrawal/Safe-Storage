@@ -45,7 +45,7 @@ def file_upload_page(request):
         if i.owner.username == authenticate_user_obj.username:
             user_file_objects.append(i)
 
-    return render(request, 'storage_app/file_upload.html', {'username': authenticate_user_obj.username, 'files': user_file_objects})
+    return render(request, 'storage_app/file_upload.html', {'user_obj': authenticate_user_obj, 'files': user_file_objects})
 
 
 def logout(request):
