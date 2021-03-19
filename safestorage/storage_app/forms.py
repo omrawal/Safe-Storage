@@ -5,7 +5,6 @@ from .models import *
 
 class RegistrationForm(forms.ModelForm):
     four_digit_pass = forms.CharField(widget=forms.PasswordInput())
-    # private_key = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User_data

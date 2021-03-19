@@ -7,26 +7,14 @@ from .forms import *
 
 # Create your views here.
 
+is_authenticated = False
+authenticate_user_obj = None
+# print(type(list(User_data.objects.filter(username='om_rawal'))))
+# print(list(User_data.objects.filter(username='om_rawal')))
+
 
 def home(request):
     return render(request, 'storage_app/home.html',)
-
-
-# def register(request):
-#     if request.method == "POST":
-#         username = request.POST.get('username')
-#         email = request.POST.get('email')
-#         four_digit_pass = request.POST.get('password')
-#         private_key = generateKey()
-#         profile_pic = request.FILES.get('profile_pic')
-#         print(username)
-#         print(email)
-#         print(four_digit_pass)
-#         print(private_key)
-#         print(profile_pic)
-#         print(type(profile_pic))
-
-#     return render(request, 'storage_app/register.html',)
 
 
 def register(request):
@@ -40,3 +28,53 @@ def register(request):
         form = RegistrationForm(
             initial={'private_key': generateKey()})
     return render(request, 'storage_app/register.html', {'form': form})
+
+
+def upload_auth_image(request):
+    return render(request, 'storage_app/upload_auth_image.html',)
+
+
+def file_upload_page(request):
+    global authenticate_user_obj
+    global is_authenticated
+    if(is_authenticated == False or authenticate_user_obj == None):
+        return redirect('storage-login')
+    all_files_list = list(Encrypted_files.objects.all())
+    user_file_objects = []
+    for i in all_files_list:
+        if i.owner.username == authenticate_user_obj.username:
+            user_file_objects.append(i)
+
+    return render(request, 'storage_app/file_upload.html', {'username': authenticate_user_obj.username, 'files': user_file_objects})
+
+
+def logout(request):
+    global is_authenticated
+    global authenticate_user_obj
+    is_authenticated = False
+    authenticate_user_obj = None
+    return redirect('storage-login')
+
+
+def login(request):
+    global is_authenticated
+    global authenticate_user_obj
+    if request.method == 'POST':
+        enterd_uname = request.POST.get('username')
+        entered_pass = request.POST.get('password')
+        print(User_data.objects.all())
+        user_data_lst = list(User_data.objects.filter(username=enterd_uname))
+        # print(user_data)
+        if(len(user_data_lst) == 1):
+            user_data = user_data_lst[0]
+            if(user_data.four_digit_pass == entered_pass):
+                is_authenticated = True
+                authenticate_user_obj = user_data
+        # print(enterd_uname)
+        # print(entered_pass)
+        return redirect('storage-file_upload')
+    else:
+        form = RegistrationForm(
+            initial={'private_key': generateKey()})
+    # return render(request, 'storage_app/register.html', {'form': form})
+    return render(request, 'storage_app/login.html',)

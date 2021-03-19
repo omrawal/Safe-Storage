@@ -11,13 +11,19 @@ class User_data(models.Model):
     private_key = models.CharField(max_length=256, null=True, blank=True)
     profile_pic = models.ImageField(upload_to='static/profilepic', null=True)
 
-    def save_auth_image(self):
-        uname = self.username
-        self.auth_image_file = models.ImageField(
-            upload_to='static/auth_image/%s' % uname, null=True)
+    def getUsername(self):
+        return self.username
 
     def __str__(self):
         return str(self.username)
+
+# class AuthImages(models.Model):
+#     owner = models.ForeignKey('User_data', null=True, on_delete=models.CASCADE)
+#     uname=owner.
+#     def save_auth_image(self):
+#         uname = self.username
+#         self.auth_image_file = models.ImageField(
+#             upload_to='static/auth_image/%s' % uname, null=True)
 
 
 class Encrypted_files(models.Model):

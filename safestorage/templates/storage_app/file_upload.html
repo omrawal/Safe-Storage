@@ -1,0 +1,31 @@
+{% extends "storage_app/base.html" %}
+{% block body_block %}
+<div class="jumbotron">
+    <h1>File Upload Page</h1>
+</div>
+<a class="nav-item nav-link " href="{% url 'storage-logout' %}">Logout</a>
+<div>
+    <h3>Welome {{ username }}</h3>
+</div>
+
+
+<table>
+    <tr>
+        <th>File Name:</th>
+        <th> Date Upload:</th>
+    </tr>
+    {% for file in files %}
+    <tr>
+        <td>{{ file.encrypted_file }}</td>
+        <td>{{ file.date_uploaded }}</td>
+    </tr>
+    {% endfor %}
+
+
+</table>
+
+
+
+
+
+{% endblock body_block %}
