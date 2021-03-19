@@ -1,0 +1,36 @@
+{% extends "storage_app/base.html" %}
+{% block body_block %}
+<div class="jumbotron">
+    <h1>Register Page</h1>
+</div>
+
+<div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div>
+            <label for="pass">Password (4 characters minimum):</label>
+            <input type="password" id="pass" name="password" minlength="4" required>
+        </div>
+
+        <div>
+            <label for="email">Enter your email:</label>
+            <input type="email" id="email" size="30" required>
+        </div>
+
+        <div>
+            <input type="file" id="img" name="profile_pic" accept="image/*">
+        </div>
+
+
+
+        <input type="submit" name="Create User">
+    </form>
+</div>
+
+{% endblock body_block %}
