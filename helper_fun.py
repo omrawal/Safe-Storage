@@ -9,7 +9,7 @@ from tkinter.filedialog import askopenfilename
 # from register import register_frame
 
 
-def user_frame(destroy_this_win=None):
+def user_frame(username, destroy_this_win=None, ):
     if destroy_this_win is not None:
         destroy_this_win.destroy()
 
@@ -17,6 +17,10 @@ def user_frame(destroy_this_win=None):
     root = tk.Tk()
     root.title("Safe-Storage:User Page")
     root.geometry("500x700")  # 300x200
+    welcome_text = 'Welcome '+username+' !!!'
+    welcome_label = tk.Label(root, text=welcome_text, font=20)
+    welcome_label.place(x=180, y=5)
+
     root.mainloop()
 
 
@@ -47,7 +51,7 @@ def login_user(window, username, password, facepic_path):
             messagebox.showinfo('Success',
                                 'Login Successful')
             print('authentication success from DB and FaceRec')
-            user_frame(window)
+            user_frame(destroy_this_win=window, username=username)
         else:
             messagebox.showerror(
                 "Error", "Try again check whether captured image contains correct face")
