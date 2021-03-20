@@ -1,3 +1,4 @@
+from cam_capture import *
 from db_queries import *
 
 # if(addUser('om', 'helloworld', 'mypic.jpg')):
@@ -57,8 +58,13 @@ from db_queries import *
 # print(getFilesOfUser('ugly_bobo'))
 # print(getFilesOfUser('om'))
 # print(getAllFiles())
-print(getSpecificFile('ugly_bobo', 'hello.txt'))
-print(getSpecificFile('ugly_bobo', 'hi.txt'))
-print(getSpecificFile('om', 'hi.txt'))
+# print(getSpecificFile('ugly_bobo', 'hello.txt'))
+# print(getSpecificFile('ugly_bobo', 'hi.txt'))
+# print(getSpecificFile('om', 'hi.txt'))
 # print_all_files()
 # print_all_users()
+
+
+# print(capture_image_from_cam_into_temp())
+# print(empty_temp_folder())
+# print(is_temp_empty())
