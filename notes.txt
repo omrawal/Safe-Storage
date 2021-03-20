@@ -1,0 +1,7 @@
+account1:
+username= omrawal
+password= 12345
+
+account2:
+username= uglybobo
+password= abcde

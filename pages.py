@@ -1,5 +1,5 @@
 from cam_capture import *
-from helper_fun import *
+from helper_fun import register_user, login_user
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 from tkinter import messagebox
