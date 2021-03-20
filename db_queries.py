@@ -89,10 +89,36 @@ def getProfilePicName(username):
         return user_data[3]
 
 
+def encrypt_this_file(filename, username):
+    private_key = getPrivateKey(username=username)
+    if(private_key == False):
+        return False
+    else:
+        res = encrypt(filename=filename, key=private_key)
+        if(res == False):
+            return False
+        else:
+            return res
+
+
+def decrypt_this_file(filename, username):
+    private_key = getPrivateKey(username=username)
+    if(private_key == False):
+        return False
+    else:
+        res = decrypt(filename=filename, key=private_key)
+        if(res == False):
+            return False
+        else:
+            return res
+
+
 def addFiles(owner, file_name):
     if(owner not in getUsers()):
         return False
     else:
+        encrypted_filename = encrypt_this_file(
+            filename=file_name, username=owner)
         conn = sqlite3.connect('safe_storage.db')
         conn.execute('''CREATE TABLE IF NOT EXISTS files(
             id integer PRIMARY KEY autoincrement,
@@ -104,7 +130,7 @@ def addFiles(owner, file_name):
 
         conn.commit()
         conn.execute("INSERT INTO FILES (owner,filename,dateuploaded) \
-            VALUES (?,?,?)", (owner, file_name, datetime.datetime.now()))
+            VALUES (?,?,?)", (owner, encrypted_filename, datetime.datetime.now()))
         conn.commit()
         conn.close()
         return True

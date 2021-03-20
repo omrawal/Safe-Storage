@@ -24,9 +24,9 @@ import os
 # print(getUsers())
 # print(getUserData('om'))
 # print(getUserData('ugly_bobo'))
-# print(getPrivateKey('om'))
+print(getPrivateKey('omrawal'))
 # print(getProfilePicName('om'))
-# print(getPrivateKey('ugly_bobo'))
+print(getPrivateKey('uglybobo'))
 # print(getProfilePicName('ugly_bobo'))
 
 # if(addFiles('ugly_bobo', 'hello.txt')):
@@ -71,4 +71,4 @@ import os
 #
 # print(os.getcwd())
 
-print(save_profile_pic("C:\\Users\\omraw\\Documents\\CATSDB.png"))
+# print(save_profile_pic("C:\\Users\\omraw\\Documents\\CATSDB.png"))
