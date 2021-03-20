@@ -1,6 +1,6 @@
 from cam_capture import *
 from db_queries import *
-
+import os
 # if(addUser('om', 'helloworld', 'mypic.jpg')):
 #     print('om added')
 # else:
@@ -68,3 +68,7 @@ from db_queries import *
 # print(capture_image_from_cam_into_temp())
 # print(empty_temp_folder())
 # print(is_temp_empty())
+#
+# print(os.getcwd())
+
+print(save_profile_pic("C:\\Users\\omraw\\Documents\\CATSDB.png"))

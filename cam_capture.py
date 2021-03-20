@@ -57,9 +57,32 @@ def empty_temp_folder():
             print('Failed to delete %s. Reason: %s' % (file_path, e))
 
 
+def save_profile_pic(profile_pic_loc):
+    if not os.path.isdir('profile_pics'):
+        os.mkdir('profile_pics', mode=0o777)
+    source_loc = profile_pic_loc.replace('/', '\\')
+    destination_loc = os.getcwd()+'\profile_pics\\'
+    img = cv2.imread(source_loc)
+    file_name = (source_loc.split('\\')[-1])
+    save_file_loc = destination_loc+file_name
+    print('destination=', save_file_loc)
+    # do some transformations on img
+    # save matrix/array as image file
+    isWritten = cv2.imwrite(save_file_loc, img)
+    if isWritten:
+        print('Image is successfully saved as file.')
+        return save_file_loc
+    else:
+        print('Some Error')
+        return False
+
+
 def is_temp_empty():
     if len(os.listdir('temp/')) == 0:
         # print("Directory is empty")
         return True
     else:
         return False
+
+
+capture_image_from_cam_into_temp()
