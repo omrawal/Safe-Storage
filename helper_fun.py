@@ -5,6 +5,7 @@ from tkinter import Message, messagebox
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 from tkinter import ttk
+from PIL import ImageTk, Image
 # from file_crypto import *
 # from pages import login_frame
 # from login import login_frame
@@ -71,41 +72,51 @@ def user_frame(username, destroy_this_win=None, ):
     note_label = tk.Label(root, text=note_text, font=5)
     note_label.place(x=20, y=55)
 
+    profile_pic_path = getProfilePicName(username=username)
+    print('profile_pic_path= ', profile_pic_path)
+    load = Image.open(profile_pic_path)
+    size = 200, 200
+    load.thumbnail(size, Image.ANTIALIAS)
+    render = ImageTk.PhotoImage(load)
+    img = tk.Label(root, image=render)
+    img.image = render
+    img.config(height=200, width=150)
+    img.place(x=150, y=130)
     encrytp_text = 'Encrypt Files:-'
     encrytp_label = tk.Label(root, text=encrytp_text, font=5)
-    encrytp_label.place(x=20, y=150)
+    encrytp_label.place(x=20, y=350)
 
     encrypt_command_message = tk.Label(
         root, text="Select File:", font=10)
-    encrypt_command_message.place(x=10, y=200)
+    encrypt_command_message.place(x=10, y=400)
 
     encrypt_command_entry = tk.Entry(root, font=10)
-    encrypt_command_entry.place(x=150, y=200)
+    encrypt_command_entry.place(x=150, y=400)
 
     encrypt_command_browse_button = tk.Button(
         root, text="Browse", font=10, command=lambda: browsefunc(encrypt_command_entry))
-    encrypt_command_browse_button.place(x=400, y=190)
+    encrypt_command_browse_button.place(x=400, y=390)
 
     encrypt_command_button = tk.Button(
         root, text="Encrypt", font=10, command=lambda: encrypt_button_clicked(window=root,
                                                                               username=username, filepath=encrypt_command_entry.get()
                                                                               ))
 
-    encrypt_command_button.place(x=200, y=250)
+    encrypt_command_button.place(x=200, y=450)
 
     available_file_list = getFilesOfUser(owner=username)
 
     decrytp_text = 'Decrypt Files:-'
     decrytp_label = tk.Label(root, text=decrytp_text, font=5)
-    decrytp_label.place(x=20, y=300)
+    decrytp_label.place(x=20, y=500)
 
     decrypt_command_message = tk.Label(
         root, text="Select File:", font=10)
-    decrypt_command_message.place(x=10, y=350)
+    decrypt_command_message.place(x=10, y=550)
 
     decrypt_command_entry = ttk.Combobox(
         root, values=available_file_list, state="readonly", width=15)
-    decrypt_command_entry.place(x=150, y=350)
+    decrypt_command_entry.place(x=150, y=550)
 
     # decrypt_command_browse_button = tk.Button(
     #     root, text="Browse", font=10, command=lambda: browsefunc(decrypt_command_entry))
@@ -116,7 +127,7 @@ def user_frame(username, destroy_this_win=None, ):
                                                                               username=username, filepath=decrypt_command_entry.get()
                                                                               ))
 
-    decrypt_command_button.place(x=200, y=400)
+    decrypt_command_button.place(x=200, y=600)
 
     root.mainloop()
 
