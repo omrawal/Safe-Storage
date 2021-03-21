@@ -1,6 +1,7 @@
 from cam_capture import *
 from db_queries import *
 import os
+from helper_fun import user_frame
 # if(addUser('om', 'helloworld', 'mypic.jpg')):
 #     print('om added')
 # else:
@@ -24,9 +25,9 @@ import os
 # print(getUsers())
 # print(getUserData('om'))
 # print(getUserData('ugly_bobo'))
-print(getPrivateKey('omrawal'))
+# print(getPrivateKey('omrawal'))
 # print(getProfilePicName('om'))
-print(getPrivateKey('uglybobo'))
+# print(getPrivateKey('uglybobo'))
 # print(getProfilePicName('ugly_bobo'))
 
 # if(addFiles('ugly_bobo', 'hello.txt')):
@@ -72,3 +73,7 @@ print(getPrivateKey('uglybobo'))
 # print(os.getcwd())
 
 # print(save_profile_pic("C:\\Users\\omraw\\Documents\\CATSDB.png"))
+
+# user_frame('omrawal')
+# print(getAllFiles())
+# print(getFilesOfUser('omrawal'))

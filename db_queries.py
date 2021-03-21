@@ -133,7 +133,7 @@ def addFiles(owner, file_name):
             VALUES (?,?,?)", (owner, encrypted_filename, datetime.datetime.now()))
         conn.commit()
         conn.close()
-        return True
+        return encrypted_filename
 
 
 def addUser(username, password, profile_pic_name):
@@ -184,7 +184,7 @@ def getFilesOfUser(owner):
         user_files = []
         for i in all_files:
             if(i[1] == owner):
-                user_files.append(i)
+                user_files.append(i[2])
         if(len(user_files) > 0):
             return user_files
         else:
