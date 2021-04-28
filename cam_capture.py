@@ -98,4 +98,4 @@ def is_temp_empty():
         return False
 
 
-capture_image_from_cam_into_temp()
+# capture_image_from_cam_into_temp()
